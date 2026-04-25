@@ -1,0 +1,32 @@
+/* App.css */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #111; /* Just for visibility */
+  color: white;
+  /* height: 100vh; */
+  overflow-x: hidden;
+  font-family: sans-serif;
+}
+
+.custom-bg {
+  background-color: #222;
+  padding: 5px;
+  border-radius: 9999px;
+}
+
+.animate-spin-slow-reverse {
+  animation: spin 40s linear infinite reverse;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+

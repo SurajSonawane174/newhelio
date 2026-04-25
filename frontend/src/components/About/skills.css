@@ -1,0 +1,511 @@
+/* Root Variables */
+:root {
+    --bg-color: #1f242d;
+    --second-bg-color: #323946;
+    --text--color: #fff;
+    --main-color: #0ef;
+    --bg-color-trans: rgba(31, 36, 45, 0.5);
+}
+
+/* General Reset */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* Background */
+.background {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../src/backgrounds/bg-2.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: fixed;
+    overflow-x: hidden;
+}
+
+/* Content Container */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    max-width: 80%;
+    color: white;
+    position: absolute;
+    top: 0;
+}
+
+/* Header */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.title {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, purple, red);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.subtitle {
+    color: gray;
+    font-size: 20px;
+}
+
+/* Swiper */
+.swiper-container {
+    width: 60%;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    width: auto;
+    height: 80px;
+}
+
+/* Light Bar */
+.light-cube {
+    position: relative;
+    top: 10px;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+}
+
+.light {
+    height: 10px;
+    width: 50%;
+    max-width: 400px;
+    min-width: 200px;
+    margin: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: white;
+    box-shadow: 0 0px 4px white, 0 0px 40px rgba(0, 0, 255, 0.7),
+        0 20px 40px rgb(211, 211, 255);
+    perspective: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.light::before {
+    content: "";
+    position: absolute;
+    height: 0px;
+    width: 100%;
+    min-width: 200px;
+    top: 0;
+    left: 0;
+    transform: scaleX(1.4) rotateX(30deg);
+    filter: blur(40px);
+    background: linear-gradient(to bottom, rgb(225, 177, 255), rgba(136, 96, 230, 0.5));
+    transition: height 0.5s ease;
+}
+
+.light.active::before {
+    height: 200px;
+}
+
+.text-color {
+    color: rgb(239, 232, 238);
+}
+
+.light-container {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    position: relative;
+    animation: fadeIn 2s linear forwards;
+    top: 0;
+}
+
+/* Cube Container */
+.skills {
+    position: absolute;
+    top: 20vh;
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 4s linear forwards;
+}
+
+.container {
+    height: 30vw;
+    width: 30vw;
+    position: relative;
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    z-index: 50;
+    cursor: pointer;
+}
+
+.card {
+    height: 12vw;
+    width: 12vw;
+    border: 1px solid white;
+    background: transparent;
+    box-sizing: border-box;
+    position: absolute;
+    transition: all 1s;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.box {
+    height: 12vw;
+    width: 12vw;
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.animate {
+    animation: animate 5s infinite;
+}
+
+@keyframes animate {
+    0% { transform: rotateX(45deg) rotateY(-45deg); }
+    25% { transform: rotateX(-45deg) rotateY(-45deg); }
+    50% { transform: rotateX(45deg) rotateY(45deg); }
+    75% { transform: rotateX(-45deg) rotateY(45deg); }
+    100% { transform: rotateX(45deg) rotateY(-45deg); }
+}
+
+/* Faces */
+#front { transform: translateZ(6vw); }
+#back { transform: translateZ(-6vw); }
+#left { right: 6vw; transform: rotateY(-90deg); }
+#right { left: 6vw; transform: rotateY(90deg); }
+#top { bottom: 6vw; transform: rotateX(90deg); }
+#bottom { top: 6vw; transform: rotateX(-90deg); }
+
+/* Hover Effects */
+.container:hover #front { transform: translateZ(10vw) rotateY(360deg); }
+.container:hover #back { transform: translateZ(-10vw) rotateY(360deg); }
+.container:hover #left { right: 10vw; }
+.container:hover #right { left: 10vw; }
+.container:hover #top { bottom: 10vw; }
+.container:hover #bottom { top: 10vw; }
+
+/* Circle Icon */
+.circle {
+    height: 3.5rem;
+    width: 3.5rem;
+    color: aqua;
+    border: 1px solid black;
+    position: absolute;
+    border-radius: 50%;
+    animation: circularMotion 16s linear infinite, fadeIn 1s linear forwards;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    top: 1rem;
+    right: 1rem;
+    transition: 0.5s ease;
+}
+
+.circle:hover {
+    box-shadow: 0 0 1rem var(--main-color);
+    color: var(--bg-color);
+    background-color: var(--main-color);
+    border: none;
+}
+
+.circle:hover .span-text {
+    display: block;
+    transition: 0.5s ease;
+}
+
+.span-text {
+    position: absolute;
+    left: 4rem;
+    display: none;
+    color: #0ef;
+    background-color: #919597;
+    border-radius: 1rem;
+    backdrop-filter: blur(5px);
+    font-size: 1rem;
+    padding: 5px;
+    margin: 10px;
+}
+
+/* Input Button */
+input {
+    height: 50px;
+    width: 100px;
+    background: pink;
+    font-size: 22px;
+    cursor: pointer;
+    position: absolute;
+    top: -100px;
+    left: 12vw;
+}
+
+/* FadeIn Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+/* ---------- Extra Small Devices (Phones <576px) ---------- */
+@media (max-width: 575.98px) {
+    .container {
+        height: 80vw;
+        width: 80vw;
+        top: -5vh;
+    }
+
+    .card,
+    .box {
+        height: 80px;
+        width: 80px;
+    }
+
+    #front {
+        transform: translateZ(40px);
+    }
+
+    #back {
+        transform: translateZ(-40px);
+    }
+
+    #left {
+        right: 40px;
+    }
+
+    #right {
+        left: 40px;
+    }
+
+    #top {
+        bottom: 40px;
+    }
+
+    #bottom {
+        top: 40px;
+    }
+
+    .container:hover #front {
+        transform: translateZ(20vw) rotateY(360deg);
+    }
+
+    .container:hover #back {
+        transform: translateZ(-20vw) rotateY(360deg);
+    }
+
+    .container:hover #left {
+        right: 20vw;
+    }
+
+    .container:hover #right {
+        left: 20vw;
+    }
+
+    .container:hover #top {
+        bottom: 20vw;
+    }
+
+    .container:hover #bottom {
+        top: 20vw;
+    }
+
+    .light::before {
+        transform: scaleX(1) rotateX(30deg);
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .swiper-container {
+        width: 80%;
+    }
+}
+
+/* ---------- Small Devices (Phones landscape & tablets <768px) ---------- */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .container {
+        height: 70vw;
+        width: 70vw;
+        top: -10vh;
+    }
+
+    .card,
+    .box {
+        height: 100px;
+        width: 100px;
+    }
+
+    #front {
+        transform: translateZ(50px);
+    }
+
+    #back {
+        transform: translateZ(-50px);
+    }
+
+    #left {
+        right: 50px;
+    }
+
+    #right {
+        left: 50px;
+    }
+
+    #top {
+        bottom: 50px;
+    }
+
+    #bottom {
+        top: 50px;
+    }
+
+    .container:hover #front {
+        transform: translateZ(25vw) rotateY(360deg);
+    }
+
+    .container:hover #back {
+        transform: translateZ(-25vw) rotateY(360deg);
+    }
+
+    .container:hover #left {
+        right: 25vw;
+    }
+
+    .container:hover #right {
+        left: 25vw;
+    }
+
+    .container:hover #top {
+        bottom: 25vw;
+    }
+
+    .container:hover #bottom {
+        top: 25vw;
+    }
+
+    .swiper-container {
+        width: 70%;
+    }
+
+    .title {
+        font-size: 40px;
+    }
+}
+
+/* ---------- Medium Devices (Tablets 768px - 991px) ---------- */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .container {
+        height: 50vw;
+        width: 50vw;
+    }
+
+    .card,
+    .box {
+        height: 10vw;
+        width: 10vw;
+    }
+
+    .title {
+        font-size: 45px;
+    }
+
+    .subtitle {
+        font-size: 18px;
+    }
+
+    .swiper-container {
+        width: 60%;
+    }
+}
+
+/* ---------- Large Devices (Desktops 992px - 1199px) ---------- */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .container {
+        height: 35vw;
+        width: 35vw;
+    }
+
+    .card,
+    .box {
+        height: 11vw;
+        width: 11vw;
+    }
+
+    .title {
+        font-size: 48px;
+    }
+}
+
+/* ---------- Extra Large Devices (1200px and up) ---------- */
+@media (min-width: 1200px) {
+    .container {
+        height: 30vw;
+        width: 30vw;
+    }
+
+    .card,
+    .box {
+        height: 12vw;
+        width: 12vw;
+    }
+
+    .title {
+        font-size: 50px;
+    }
+}

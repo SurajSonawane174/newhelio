@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Portfolio Website",
+    "description": "A personal portfolio showcasing projects, resume, and contact info.",
+    "imageUrl": "https://example.com/images/portfolio.png",
+    "githubUrl": "https://github.com/suraj/portfolio-site",
+    "liveUrl": "https://suraj.dev"
+  },
+  {
+    "title": "Chat App",
+    "description": "A real-time chat application using WebSocket and Node.js.",
+    "imageUrl": "https://example.com/images/chatapp.png",
+    "githubUrl": "https://github.com/suraj/chat-app",
+    "liveUrl": "https://chat.suraj.dev"
+  },
+  {
+    "title": "Expense Tracker",
+    "description": "Tracks and visualizes expenses with monthly reports and charts.",
+    "imageUrl": "https://example.com/images/expense-tracker.png",
+    "githubUrl": "https://github.com/suraj/expense-tracker",
+    "liveUrl": "https://expenses.suraj.dev"
+  }
+]

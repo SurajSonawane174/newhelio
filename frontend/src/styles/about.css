@@ -1,0 +1,291 @@
+:root {
+  --bg-color: #1f242d;
+  --second-bg-color: #323946;
+  --text--color: #fff;
+  --main-color: #0ef;
+  --bg-color-trans: rgba(31, 36, 45, 0.5);
+  --main-gradient: linear-gradient(to right, #2563eb, #9333ea);
+  --bg-dark: #0f172a;
+  --text-light: #e5e7eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.about {
+  position: relative;
+  z-index: 10; /* bring it above the fixed background */
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background: url("/backgrounds/main-bg.webp") center center / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.treebg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.cliff {
+  height: 50vh;
+  width: auto;
+}
+
+.image-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+}
+
+.horse-image {
+  position: absolute;
+  right: 55px;
+  top: 40px;
+  width: 300px;
+  height: 300px;
+}
+
+.cliff-image {
+  width: 480px;
+  height: 480px;
+}
+
+.trees-image {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: cover;
+  position: relative;
+  bottom: 0;
+}
+
+.stars-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 300px;
+  height: 300px;
+}
+
+/* rob */
+
+.rob {
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  /* bottom: 0px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+  
+}
+
+.ROBOT {
+  /* transform: scale(1); */
+  /* transition: transform 0.3s ease-in-out; */
+  animation: fadeIn 3s ease-in-out;
+  /* position: relative; */
+}
+
+/* Medium screens (tablets) */
+@media screen and (max-width: 768px) {
+  .rob div:nth-of-type(2) div {
+    /* Your styles here */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    scale: 2;
+    position: relative;
+    left: 30px;
+  }
+}
+
+/* Small screens (phones) */
+@media screen and (max-width: 480px) {
+  .rob div:nth-of-type(2) div {
+    /* Your styles here */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    scale: 4;
+    position: relative;
+    left: 10px;
+  }
+  .rob div:nth-of-type(1)  {
+    /* Your styles here */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scale: 0.8;
+    /* position: relative; */
+    top: -50%;
+  }
+}
+
+/* ======================== INTROSECTION====================== */
+
+:root {
+  --main-gradient: linear-gradient(to right, #2563eb, #9333ea);
+  --bg-dark: #0f172a;
+  --text-light: #e5e7eb;
+}
+
+.intro-section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom right, #1f2937, #000000);
+  color: white;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.intro-content {
+  max-width: 768px;
+  text-align: center;
+}
+
+.intro-greeting {
+  display: block;
+  font-size: 2.5rem;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+}
+
+.intro-name {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #6366f1; /* Indigo */
+}
+
+.intro-typed-text {
+  font-size: 3rem;
+  margin-top: 1rem;
+}
+
+.typed-highlight {
+  font-weight: 600;
+  background: var(--main-gradient);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.intro-description {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  margin-top: 1rem;
+}
+
+.intro-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 0.6rem 1.5rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.btn.resume {
+  background-color: #4f46e5;
+}
+
+.btn.resume:hover {
+  background-color: #4338ca;
+}
+
+.btn.projects {
+  background-color: #9333ea;
+}
+
+.btn.projects:hover {
+  background-color: #7e22ce;
+}
+
+.btn.contact {
+  background-color: #1f2937;
+}
+
+.btn.contact:hover {
+  background-color: #111827;
+}
+
+@media (min-width: 640px) {
+  .intro-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .btn {
+    width: auto;
+  }
+}
+
+/* ================gitstat====== */
+.git-stat-text {
+  color: #9333ea;
+}
+
+/* ==============skills========== */
+
+.skill-container {
+  width: 80vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+@media screen and (max-width: 480) {
+  .item {
+    width: 80vh;
+    overflow: hidden;
+  }
+}
