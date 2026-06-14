@@ -15,6 +15,8 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@formspree/react": "^3.0.0",
+    "@mediapipe/camera_utils": "^0.3.1675466862",
+    "@mediapipe/hands": "^0.4.1675469240",
     "@react-three/drei": "^10.5.1",
     "@react-three/fiber": "^9.2.0",
     "@splinetool/react-spline": "^4.0.0",

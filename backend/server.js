@@ -1,45 +1,60 @@
-// server.js
-const express = require("express");
-const path = require("path");
-const dotenv = require("dotenv");
-const cors = require("cors");
+const express = require('express');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const passport = require('passport');
+const cors = require('cors');
+require('dotenv').config();
 
-dotenv.config();
+const Admin = require('./models/Admin');
+const portfolioRoutes = require('./routes/portfolioRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+// Inside backend/server.js
 
-// Middleware
-app.use(cors());
+
+// Inside backend/server.js
+
+app.use(cors({
+    // Explicitly allow both localhost and 127.0.0.1 aliases
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'], 
+    credentials: true, 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Added OPTIONS for strict preflight handling
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false })); // <-- add this
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.error(err));
 
-// Contact form route
-app.post("/api/contact", (req, res) => {
-  const { name, email, message } = req.body;
+// Session Setup
+// Session Setup
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'a_very_secure_random_string',
+    resave: false,
+    saveUninitialized: false,
+    
+    // 🚨 Update this specific line:
+    store: (MongoStore.default || MongoStore).create({ mongoUrl: process.env.MONGODB_URI }),
+    
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24, // 1 day
+        httpOnly: true, 
+        secure: process.env.NODE_ENV === 'production' 
+    }
+}));
 
-  if (!name || !email || !message) {
-    return res.status(400).json({ success: false, error: "All fields are required" });
-  }
+// Passport Setup
+app.use(passport.initialize());
+app.use(passport.session());
 
-  // Later: Save to DB or send email here
-  console.log("📩 New Contact Form Submission:", { name, email, message });
+passport.use(Admin.createStrategy());
+passport.serializeUser(Admin.serializeUser());
+passport.deserializeUser(Admin.deserializeUser());
 
-  res.json({ success: true, message: "Message received! We'll get back to you soon." });
-});
+// Routes
+app.use('/api/v1', portfolioRoutes);
 
-// Resolve directory
-const __dirnameResolved = path.resolve();
-
-// Serve frontend static files
-app.use(express.static(path.join(__dirnameResolved, "frontend", "dist")));
-
-// Catch-all handler for SPA (no * or weird : issues)
-app.use((req, res) => {
-  res.sendFile(path.join(__dirnameResolved, "frontend", "dist", "index.html"));
-});
-
-// Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+app.listen(8080, () => console.log('Server running on port 8080'));

@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import ProjectLayout from "./ProjectLayout";
 
@@ -19,10 +18,11 @@ const ProjectList = ({ projects }) => {
       variants={container}
       initial="hidden"
       animate="show"
-      className="w-full max-w-auto  xl:max-w-4xl px-4 mx-auto lg:px-16 space-y-6 md:space-y-8 flex flex-col justify-center items-center"
+      className="w-full max-w-auto xl:max-w-4xl px-4 mx-auto lg:px-16 space-y-6 md:space-y-8 flex flex-col justify-center items-center z-10 relative"
     >
-      {projects.map((project, index) => {
-        return <ProjectLayout key={index} {...project} />;
+      {projects.map((project) => {
+        // Use the secure MongoDB _id as the key to prevent React warnings
+        return <ProjectLayout key={project._id} {...project} />;
       })}
     </motion.div>
   );

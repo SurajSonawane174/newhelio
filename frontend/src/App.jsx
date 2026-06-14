@@ -10,6 +10,9 @@ import ContactPage from './components/contact/contactpage'
 import Form from './components/contact/Form'
 // import ContactPage from './components/contact/ContactPage'
 import EncrPage from './components/Encryption/page'
+import BlackHoleSimulation from './components/new/BlackHoleSimulation'
+import AdminLogin from './components/Encryption/AdminLogin'
+import Dashboard from './components/Encryption/AdminDashboard'
 
 function App() {
   return (
@@ -27,6 +30,8 @@ function App() {
           <Route path="/projects" element={< ProjectsPage/>} />
           <Route path="/contact" element={< ContactPage/>} />
           <Route path="/encryption" element={< EncrPage/>} />
+          <Route path="/new" element={< BlackHoleSimulation/>} />
+          // <Route path="/admin/dashboard" element={<Dashboard />} />
 
           
         </Routes>

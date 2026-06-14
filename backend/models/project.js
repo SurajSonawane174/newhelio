@@ -1,16 +1,14 @@
 const mongoose = require('mongoose');
 
-const projectSchema = new mongoose.Schema(
-  {
+const projectSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
-    imageUrl: { type: String, required: true },
-    githubUrl: { type: String, required: true },
-    liveUrl: { type: String, required: true },
-  },
-  { timestamps: true }
-);
+    techStack: [{ type: String }], // Array of strings, e.g., ['React', 'Node.js', 'MongoDB']
+    githubLink: { type: String },
+    liveLink: { type: String },
+    // Store the public URLs from your Supabase buckets here
+    attachmentUrls: [{ type: String }], 
+    isFeatured: { type: Boolean, default: false } // Handy for highlighting top projects
+}, { timestamps: true });
 
-const Project = mongoose.model('Project', projectSchema);
-
-module.exports = Project;
+module.exports = mongoose.model('Project', projectSchema);

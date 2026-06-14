@@ -237,7 +237,7 @@
     margin: 10px;
 }
 
-/* Input Button */
+/* Input Button
 input {
     height: 50px;
     width: 100px;
@@ -247,7 +247,7 @@ input {
     position: absolute;
     top: -100px;
     left: 12vw;
-}
+} */
 
 /* FadeIn Animation */
 @keyframes fadeIn {
