@@ -18,7 +18,7 @@ const app = express();
 app.use(cors({
     // Explicitly allow both localhost and 127.0.0.1 aliases
     // origin: ['http://localhost:5173', 'http://127.0.0.1:5173'], 
-    origin: ['http://localhost:5173', 'https://heliocoder.vercel.app/'],
+    origin: ['http://localhost:5173', 'https://heliocoder.vercel.app'],
     credentials: true, 
     optionsSuccessStatus: 200,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Added OPTIONS for strict preflight handling
