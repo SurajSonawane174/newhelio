@@ -59,4 +59,11 @@ passport.deserializeUser(Admin.deserializeUser());
 // Routes
 app.use('/api/v1', portfolioRoutes);
 
-app.listen(8080, () => console.log('Server running on port 8080'));
+// app.listen(8080, () => console.log('Server running on port 8080'));
+// Only run the listen command if you are testing locally on your laptop
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(8080, () => console.log('Server running locally on port 8080'));
+}
+
+// Export the app so Vercel can run it as a serverless function
+module.exports = app;
