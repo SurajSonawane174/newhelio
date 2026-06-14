@@ -1,21 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../styles/about.css";
 import Rob from "./Rob";
-import Spotlight from "./Spotlight"; // Assuming you might use this later
+import Spotlight from "./Spotlight";
 import Typed from "typed.js";
 import ScrollReveal from "scrollreveal";
 import ItemLayout from "./ItemLayout";
+import Skills from "./sas";
 import SkillsSwiper from "./SkillsSwipper";
 import LampWithCube from "./LampWithCube";
+import LampDemo from "./LampDemo";
+import { LampContainer } from "./LampContainer";
 import StarsCanvas from "../Encryption/StarCanvas";
 import ExperienceTimeline from "./ExperienceTimeline";
 
-// 🚨 FIXED: Safe for local testing and automatic live deployment
+
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api/v1";
 
 const About = () => {
   const typedRef = useRef(null);
-  
   // State to hold your backend data with default fallbacks
   const [personalData, setPersonalData] = useState({
     name: "Pixel Sorcerer",
@@ -24,7 +26,7 @@ const About = () => {
     yearsOfExperience: 3
   });
 
-  // Fetch Personal Data from Backend
+  // Fetch Personal Data from Backend (Moved outside to fix the nesting error)
   useEffect(() => {
     const fetchPersonalData = async () => {
       try {
@@ -50,7 +52,6 @@ const About = () => {
     fetchPersonalData();
   }, []); // Run once on mount
 
-  // Initialize Animations and Typed.js
   useEffect(() => {
     const typedInstance = new Typed(typedRef.current, {
       strings: ["COEPIAN", "Developer", "Programmer", "Student"],
@@ -61,7 +62,7 @@ const About = () => {
     });
 
     ScrollReveal({
-      reset: false,
+      reset: true,
       distance: "150px",
       duration: 2000,
       delay: 200,
@@ -79,7 +80,7 @@ const About = () => {
     });
 
     ScrollReveal().reveal(".reveal-bottom-always", {
-      reset: false,
+      reset: false, // 👈 reset enabled for this one
       distance: "150px",
       duration: 2000,
       delay: 200,
@@ -87,7 +88,7 @@ const About = () => {
     });
 
     ScrollReveal().reveal(".reveal-right-always", {
-      reset: false,
+      reset: false, // 👈 reset enabled for this one
       distance: "80px",
       duration: 2000,
       delay: 200,
@@ -106,7 +107,7 @@ const About = () => {
           alt=""
           className="treebg reveal-bottom-always"
           loading="eager"
-          fetchPriority="high" // 🚨 FIXED: Changed from fetchpriority to fetchPriority
+          fetchpriority="high"
         />
         <div className="image-container">
           <img
@@ -114,24 +115,23 @@ const About = () => {
             alt="horse"
             className="horse-image reveal-right-always"
             loading="eager"
-            fetchPriority="high" // 🚨 FIXED: Changed from fetchpriority to fetchPriority
+            fetchpriority="high"
           />
           <img
             src="/backgrounds/cliff.webp"
             alt="cliff"
             className="cliff-image reveal-right-always"
             loading="eager"
-            fetchPriority="high" // 🚨 FIXED: Changed from fetchpriority to fetchPriority
+            fetchpriority="high"
           />
         </div>
 
         <img src="/backgrounds/stars.png" alt="stars" className="stars-image" />
       </div>
-      
       <div className="rob">
+        <Spotlight></Spotlight>
         <Rob className="ROBOT"> </Rob>
       </div>
-      
       <div className="intro-section">
         <div className="intro-content reveal-left">
           <span className="intro-greeting">Hello, it's me</span>
@@ -156,7 +156,6 @@ const About = () => {
           </div>
         </div>
       </div>
-      
       <div className="skill-container p-20">
         <ItemLayout
           className={
@@ -166,7 +165,6 @@ const About = () => {
           <SkillsSwiper></SkillsSwiper>
         </ItemLayout>
       </div>
-      
       <div className="lamp reveal-bottom">
         <div className="light-container">
           <div className="light active">
