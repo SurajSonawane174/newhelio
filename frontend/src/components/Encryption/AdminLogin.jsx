@@ -13,21 +13,23 @@ const AdminLogin = () => {
         }, 500);
         return () => clearInterval(interval);
     }, []);
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api/v1";
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        setStatusText('AUTHENTICATING_PROTOCOL_INITIATED...');
+const handleLogin = async (e) => {
+    e.preventDefault();
+    setStatusText('AUTHENTICATING_PROTOCOL_INITIATED...');
 
-        try {
-            const response = await fetch('http://localhost:5000/api/v1/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // CRUCIAL: This ensures the passport session cookie is saved to your browser
-                credentials: 'include', 
-                body: JSON.stringify({ username, password }),
-            });
+    try {
+        // 🚨 FIXED: Now uses the dynamic environment variable
+        const response = await fetch(`${API_BASE}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // CRUCIAL: This ensures the passport session cookie is saved to your browser
+            credentials: 'include', 
+            body: JSON.stringify({ username, password }),
+        });
 
             const data = await response.json();
 

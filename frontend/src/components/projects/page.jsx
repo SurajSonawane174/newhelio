@@ -3,6 +3,9 @@ import ProjectList from "./ProjectList";
 import "../../styles/project.css";
 import StarsCanvas from "../Encryption/StarCanvas";
 
+// Define the API Base at the top, just like the admin dashboard
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api/v1";
+
 const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,8 +14,8 @@ const ProjectsPage = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        // Fetching directly from the backend port (Strict CORS setup)
-        const response = await fetch("http://localhost:8080/api/v1/projects");
+        // 🚨 FIXED: Now uses the dynamic environment variable
+        const response = await fetch(`${API_BASE}/projects`);
         if (!response.ok) throw new Error("Failed to fetch projects");
         
         const data = await response.json();
@@ -37,7 +40,6 @@ const ProjectsPage = () => {
         <p className="subtitle">Check out My latest works</p>
       </div>
 
-      {/* Handle Loading and Error States cleanly */}
       {loading ? (
         <div className="flex justify-center items-center mt-20 text-cyan-400 font-mono tracking-widest animate-pulse">
           LOADING_DATABASE_RECORDS...

@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../styles/about.css";
 import Rob from "./Rob";
-import Spotlight from "./Spotlight";
+import Spotlight from "./Spotlight"; // Assuming you might use this later
 import Typed from "typed.js";
 import ScrollReveal from "scrollreveal";
 import ItemLayout from "./ItemLayout";
-import Skills from "./sas";
 import SkillsSwiper from "./SkillsSwipper";
 import LampWithCube from "./LampWithCube";
-import LampDemo from "./LampDemo";
 import StarsCanvas from "../Encryption/StarCanvas";
-// import { ExperienceTimeline } from "./ExperienceTimeline";
 import ExperienceTimeline from "./ExperienceTimeline";
+
+// 🚨 FIXED: Safe for local testing and automatic live deployment
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api/v1";
 
 const About = () => {
   const typedRef = useRef(null);
@@ -28,7 +28,8 @@ const About = () => {
   useEffect(() => {
     const fetchPersonalData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/v1/personal");
+        // 🚨 FIXED: Now uses the dynamic environment variable
+        const response = await fetch(`${API_BASE}/personal`);
         if (response.ok) {
           const data = await response.json();
           // Update state only if data exists to avoid blank fields
@@ -105,7 +106,7 @@ const About = () => {
           alt=""
           className="treebg reveal-bottom-always"
           loading="eager"
-          fetchpriority="high"
+          fetchPriority="high" // 🚨 FIXED: Changed from fetchpriority to fetchPriority
         />
         <div className="image-container">
           <img
@@ -113,14 +114,14 @@ const About = () => {
             alt="horse"
             className="horse-image reveal-right-always"
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high" // 🚨 FIXED: Changed from fetchpriority to fetchPriority
           />
           <img
             src="/backgrounds/cliff.webp"
             alt="cliff"
             className="cliff-image reveal-right-always"
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high" // 🚨 FIXED: Changed from fetchpriority to fetchPriority
           />
         </div>
 
@@ -134,7 +135,6 @@ const About = () => {
       <div className="intro-section">
         <div className="intro-content reveal-left">
           <span className="intro-greeting">Hello, it's me</span>
-          {/* Dynamic Name here if you want, or leave as static Suraj */}
           <h1 className="intro-name">Suraj</h1>
           <h3 className="intro-typed-text">
             And I'm a <span ref={typedRef} className="typed-highlight" />

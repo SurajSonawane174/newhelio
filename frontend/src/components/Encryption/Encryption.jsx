@@ -27,20 +27,24 @@ const Encryption = () => {
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api/v1";
 
-  const handleLogin = async (e) => {
+const handleLogin = async (e) => {
     e.preventDefault();
     
+    // REMOVED: setStatusText('AUTHENTICATING_PROTOCOL_INITIATED...');
+
     try {
-      const response = await fetch('http://localhost:8080/api/v1/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        // CRUCIAL: Ensures your secure session cookie is stored in the browser
-        credentials: 'include', 
-        body: JSON.stringify(credentials),
-      });
+        // 🚨 FIXED: Now uses the dynamic environment variable
+        const response = await fetch(`${API_BASE}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // CRUCIAL: This ensures the passport session cookie is saved to your browser
+            credentials: 'include', 
+            body: JSON.stringify({ username: credentials.username, password: credentials.password }), // FIXED: passed credentials state directly
+        });
 
       if (response.ok) {
         setStatus("success");
@@ -65,7 +69,6 @@ const Encryption = () => {
       }, 1800);
     }
   };
-
   return (
     <div className="flex flex-row relative items-center justify-center min-h-screen w-full h-full overflow-hidden">
       {/* Heading */}
