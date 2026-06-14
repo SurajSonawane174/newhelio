@@ -1,5 +1,5 @@
-const Project = require('../models/Project');
-const Personal = require('../models/Personal');
+const Project = require('../models/project');
+const Personal = require('../models/personal');
 const Experience = require('../models/Experience');
 
 
