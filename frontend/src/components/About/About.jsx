@@ -31,8 +31,8 @@ const About = () => {
     const fetchPersonalData = async () => {
       try {
         // 🚨 FIXED: Now uses the dynamic environment variable
-        // const response = await fetch(`${API_BASE}/personal`);
-        const response = await fetch('/api/v1/personal');
+        const response = await fetch(`${API_BASE}/personal`);
+        // const response = await fetch('/api/v1/personal');
 
         if (response.ok) {
           const data = await response.json();
