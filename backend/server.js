@@ -29,18 +29,20 @@ mongoose.connect(process.env.MONGODB_URI)
 
 // Session Setup
 // Session Setup
+// 1. MUST be added so Express trusts Vercel's network
+app.set("trust proxy", 1);
+
+// 2. Updated Session Setup
 app.use(session({
     secret: process.env.SESSION_SECRET || 'a_very_secure_random_string',
     resave: false,
     saveUninitialized: false,
-    
-    // 🚨 Update this specific line:
     store: (MongoStore.default || MongoStore).create({ mongoUrl: process.env.MONGODB_URI }),
-    
     cookie: {
         maxAge: 1000 * 60 * 60 * 24, // 1 day
         httpOnly: true, 
-        secure: process.env.NODE_ENV === 'production' 
+        secure: true, // MUST be true when using sameSite 'none'
+        sameSite: 'none' // THIS is the magic line that allows cross-domain login
     }
 }));
 
